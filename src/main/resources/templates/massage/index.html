@@ -1,0 +1,57 @@
+<html lang="">
+<style>
+    html, body, div {
+        margin: 0;
+    }
+
+    .bl, .rl {
+        height: 100%;
+        display: inline-table;
+    }
+
+    .rl {
+        width: 70%;
+        background-color: rgba(0, 86, 139, 0.07);
+    }
+
+    .bl {
+        width: calc(30% - 5px);
+        background-color: rgba(139, 0, 0, 0.07);
+    }
+</style>
+<body>
+<div>
+    <div class="bl">
+        <ul>
+            <li th:each="group:${groupList}" th:text="${group.name}"></li>
+        </ul>
+    </div>
+    <div class="rl">
+        <ul>
+            <li th:each="msg:${massageList}" th:text="${msg.getMsg()}"></li>
+            <li>信息：<input id="msgInput"/>
+                <button id="msgPost">发送</button>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="/js/jquery-3.7.0.min.js"></script>
+<script>
+    $('.user>h1').click((user) => {
+        $(user.currentTarget).next().toggle(500);
+    })
+    $('#msgPost').click(() => {
+        $.ajax({
+            type: "POST",
+            url: `/massage/send${location.pathname}`,
+            contentType: "application/json", //必须这样写
+            data: $('#msgInput').val(),
+            success: function (data) {
+                location.reload()
+            }
+
+        })
+    })
+</script>
+</html>

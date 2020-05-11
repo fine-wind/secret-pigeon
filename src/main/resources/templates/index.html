@@ -1,0 +1,27 @@
+<html lang="">
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="/css/common.css">
+</head>
+<body>
+<div>
+    <p class="menu">
+        <span>首页</span>
+        <span><a data-iframe="/massage/all/index" href="#">信息</a></span>
+        <span><a data-iframe="/friend/index.html" href="#">好友管理</a></span>
+        <span><a data-iframe="/config/index.html" href="#">我的配置</a></span>
+        <span><a data-iframe="/file/index.html" href="#" title="todo">文件共享</a></span>
+        <span>张三</span>
+        <span>登出</span>
+    </p>
+    <div data-iframe></div>
+</div>
+</body>
+<script type="text/javascript" src="/js/jquery-3.7.0.min.js"></script>
+<script src="/js/common.js"></script>
+<!--<script>
+    $('.menu a[data-iframe]').click((a) => {
+        $('iframe').attr('src', $(a.currentTarget).data('iframe'))
+    })
+</script>-->
+</html>

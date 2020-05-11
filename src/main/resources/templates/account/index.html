@@ -1,0 +1,28 @@
+<html lang="ch">
+<link rel="stylesheet" type="text/css" href="/css/common.css">
+<body>
+<h2>我的账号</h2>
+<div>
+    <div>
+        <form>
+            <span>我的昵称<label><input name="name" type="text"/></label></span><br/>
+        </form>
+        <button data-up="/account/my/update">更新昵称</button>
+    </div>
+    <br/>
+</div>
+<div>
+    账号信息
+    <ul>
+        <li><span>昵称:</span><span th:text="${myAccount.name}"></span></li>
+        <li><span>哈希:</span><span th:text="${myAccount.hash}"></span></li>
+        <li><span>公钥:</span><span th:text="${myAccount.publicKey}"></span></li>
+    </ul>
+</div>
+</body>
+<style>
+
+</style>
+<script type="text/javascript" src="/js/jquery-3.7.0.min.js"></script>
+<script src="/js/common.js"></script>
+</html>

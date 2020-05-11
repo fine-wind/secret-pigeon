@@ -1,0 +1,17 @@
+<html lang="">
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="/css/common.css">
+</head>
+<body>
+<h1>我的配置</h1>
+<div>
+    <p class="menu">
+        <span th:each="ma:${menus}"><a th:data-iframe="${ma.path}" th:text="${ma.name}" href="#"></a></span>
+    </p>
+    <div data-iframe></div>
+</div>
+</body>
+<script type="text/javascript" src="/js/jquery-3.7.0.min.js"></script>
+<script src="/js/common.js"></script>
+</html>

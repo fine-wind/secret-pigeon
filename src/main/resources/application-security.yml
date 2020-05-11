@@ -1,0 +1,7 @@
+server:
+  port: ${random.int(19000,19002)}
+spring:
+  security:
+    user:
+      name: root
+      password: root

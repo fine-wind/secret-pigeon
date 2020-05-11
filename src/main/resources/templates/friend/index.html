@@ -1,0 +1,43 @@
+<html lang="">
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="/css/common.css">
+</head>
+<body>
+<div>
+    <h1>好友管理</h1>
+    <div>
+        <form>
+            <span>查找hash<label><input name="id"></label></span><br/>
+        </form>
+        <button data-add="/friend/add" title="会自动向其发送添加好友申请，等待好友回复">添加好友</button>
+    </div>
+    <br/>
+</div>
+<div>
+    好友列表
+    <table border="1">
+        <tr>
+            <td>hash</td>
+            <td>昵称</td>
+            <td>好友状态</td>
+            <td>操作</td>
+        </tr>
+        <tr th:each="dl:${dataPage}">
+            <td th:text="${dl.id}"></td>
+            <td th:text="${dl.name}"></td>
+            <td th:text="${dl.version}"></td>
+            <td>
+                <button data-up="/friend/update" th:data-id="${dl.id}">更新</button>
+                <button data-del="/friend/del" th:data-id="${dl.id}">删除</button>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+<style>
+
+</style>
+<script type="text/javascript" src="../js/jquery-3.7.0.min.js"></script>
+<script src="/js/common.js"></script>
+</html>

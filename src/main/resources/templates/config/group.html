@@ -1,0 +1,62 @@
+<html>
+<style>
+    html, body, div {
+        margin: 0;
+    }
+
+    .ma {
+        height: 36px;
+        text-align: center;
+    }
+
+    .ma > span {
+        min-width: 100px;
+        font-size: 27px;
+        margin-left: 20px;
+    }
+
+    .group {
+        text-align: center;
+    }
+</style>
+<body>
+<div class="ma">
+    <span th:each="config:${configs}"><a th:href="${config.path}" th:text="${config.name}">config.name</a></span>
+</div>
+<div class="group">
+    <table border="1">
+        <tr>
+            <td>组名称</td>
+            <td>所有者</td>
+            <td>操作</td>
+        </tr>
+        <tr th:each="ma:${dataList}">
+            <td th:text="${ma.name}"></td>
+            <td th:text="${ma.md5}"></td>
+            <td>
+                <button th:data-del="${ma.id}">退出</button>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+<style>
+
+</style>
+<script type="text/javascript" src="../js/jquery-3.7.0.min.js"></script>
+<script>
+  $('[data-fl]').click((btn) => {
+    const url = $(btn.currentTarget).data('fl');
+    const form = $(btn.currentTarget).parent().children('form').serialize();
+    $.post(url, form, function () {
+      location.reload();
+    });
+  })
+  $('[data-del]').click((btn) => {
+    const id = $(btn.currentTarget).data('del');
+    $.post("/account/del", `id=${id}`, function () {
+      location.reload();
+    });
+  })
+</script>
+</html>

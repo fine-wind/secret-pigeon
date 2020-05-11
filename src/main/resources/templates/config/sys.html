@@ -1,0 +1,38 @@
+<html>
+<style>
+    textarea {
+        width: 400px;
+    }
+</style>
+<body>
+<h2>系统配置</h2>
+<div>
+    <div>
+        <form>
+            <span>地址列表</span><br/>
+            <label>
+                <textarea name="name" placeholder="每行一个。示例 192.168.0.120:49999"></textarea>
+            </label>
+        </form>
+        <button data-fl="/account/my/create">监听地址</button>
+    </div>
+</div>
+<div>
+    <table border="1">
+        <tr>
+            <td>监听地址</td>
+            <td>最后通讯时间</td>
+            <td>操作</td>
+        </tr>
+        <tr th:each="ma:${dataList}">
+            <td th:text="${ma.name}"></td>
+            <td th:text="${ma.hash}"></td>
+            <td>
+                <button th:data-del="${ma.id}">删除</button>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+<script type="text/javascript" src="/js/jquery-3.7.0.min.js"></script>
+</html>
