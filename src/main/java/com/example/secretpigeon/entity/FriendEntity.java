@@ -11,6 +11,9 @@ import java.util.Date;
  */
 @Entity
 @Data
+@Table(indexes = {
+        @Index(columnList = "id"),
+})
 @Accessors(chain = true)
 public class FriendEntity {
     /**
@@ -30,7 +33,7 @@ public class FriendEntity {
     /**
      * 公钥
      */
-    @Column(columnDefinition = "CLOB")
+    @Column(columnDefinition = "text")
     private String publicKey;
 
 }

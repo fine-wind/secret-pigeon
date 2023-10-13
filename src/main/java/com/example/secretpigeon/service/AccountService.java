@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
@@ -26,8 +28,20 @@ public class AccountService {
         AtomicReference<String> hash = new AtomicReference<>();
         accountDao.findAll().forEach(e -> hash.set(e.getHash()));
         if (Objects.isNull(hash.get())) {
-            hash.set(UUID.randomUUID().toString());
             KeyPairEntity account = KeyPairUtil.create(keySize);
+            MessageDigest instance = null;
+            try {
+                instance = MessageDigest.getInstance("sha-256");
+            } catch (NoSuchAlgorithmException e) {
+                throw new RuntimeException(e);
+            }
+            instance.update(account.getPublicKey().getBytes());
+            byte[] bs = instance.digest();
+            StringBuilder res = new StringBuilder();
+            for (byte b : bs) {
+                res.append(String.format("%02X", b));
+            }
+            hash.set(res.toString());
             String name = StringUtils.hasLength(keyPair.getName()) ? keyPair.getName() : hash.get();
             accountDao.save(account.setId(ACCOUNT_ID).setName(name).setHash(hash.get()));
         }

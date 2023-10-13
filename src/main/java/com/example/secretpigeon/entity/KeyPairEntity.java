@@ -6,8 +6,14 @@ import lombok.experimental.Accessors;
 
 import java.util.Date;
 
-@Entity
+/**
+ * 密钥信息
+ */
 @Data
+@Entity
+@Table(indexes = {
+        @Index(columnList = "hash"),
+})
 @Accessors(chain = true)
 public class KeyPairEntity {
 
@@ -20,12 +26,12 @@ public class KeyPairEntity {
     /**
      * 公钥
      */
-    @Column(columnDefinition = "CLOB")
+    @Column(columnDefinition = "text")
     private String publicKey;
     /**
      * 私钥
      */
-    @Column(columnDefinition = "CLOB")
+    @Column(columnDefinition = "text")
     private String privateKey;
     /**
      * 名称
